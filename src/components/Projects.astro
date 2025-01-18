@@ -1,93 +1,154 @@
 ---
-import GitHub from "./icons/GitHub.astro"
-import NextJS from "./icons/NextJS.astro"
-import Tailwind from "./icons/Tailwind.astro"
-import Link from "./icons/Link.astro"
-import LinkButton from "./LinkButton.astro"
+import GitHub from "./icons/GitHub.astro";
+import React from "./icons/React.astro";
+import Tailwind from "./icons/Tailwind.astro";
+import Link from "./icons/Link.astro";
+import LinkButton from "./LinkButton.astro";
+import Javascript from "./icons/Javascript.astro";
+import CssIcon from "./icons/Css.astro";
+import HTMLIcon from "./icons/HTML.astro";
+import Typescript from "./icons/Typescript.astro";
+import AstroIcon from "./icons/AstroIcon.astro";
+import CSharpIcon from "./icons/Csharp.astro";
+import DotnetIcon from "./icons/DotnetIcon.astro";
+import SQLServerIcon from "./icons/SQLServerIcon.astro";
 
 const TAGS = {
-  NEXT: {
-    name: "Next.js",
-    class: "bg-black text-white",
-    icon: NextJS,
+  HTML: {
+    name: "HTML5",
+    class: "bg-orange-300 text-black",
+    icon: HTMLIcon,
+  },
+  CSS: {
+    name: "CSS",
+    class: "bg-[#003159] text-white",
+    icon: CssIcon,
   },
   TAILWIND: {
     name: "Tailwind CSS",
     class: "bg-[#003159] text-white",
     icon: Tailwind,
   },
-}
+  JS: {
+    name: "Javascript",
+    class: "bg-yellow-300 text-black",
+    icon: Javascript,
+  },
+  React: {
+    name: "React.js",
+    class: "bg-black text-white",
+    icon: React,
+  },
+  Typescript: {
+    name: "Typescript",
+    class: "bg-blue-300 text-black",
+    icon: Typescript,
+  },
+  Astro: {
+    name: "Astro",
+    class: "bg-orange-400 text-black",
+    icon: AstroIcon,
+  },
+  CSharp: {
+    name: "C#",
+    class: "bg-green-400 text-black",
+    icon: CSharpIcon,
+  },
+  Dotnet: {
+    name: ".NET",
+    class: "bg-white text-black",
+    icon: DotnetIcon,
+  },
+  SQLServer: {
+    name: "SQL Server",
+    class: "bg-red-400 text-white",
+    icon: SQLServerIcon,
+  },
+};
 const PROJECTS = [
   {
-    title: "SVGL - A beautiful library with SVG logos",
+    title: "Fake Rubik Store",
     description:
-      "Biblioteca de logos SVG de las marcas más populares. +10k visitas al mes. +2K svgs descargados. Creado desde cero con Next.js, React y Tailwind CSS.",
-    link: "https://svgl.vercel.app/",
-    github: "https://github.com/pheralb/svgl",
-    image: "/projects/svgl.webp",
-    tags: [TAGS.NEXT, TAGS.TAILWIND],
+      "Plataforma de e-commerce única, dedicada a los amantes de los cubos de Rubik. Desarrollada con tecnologías como React, CSS, Tailwind, TypeScript, Vercel. Ofrece una amplia variedad de productos y una experiencia de compra personalizada a través de la implementación de una API RESTful altamente eficiente.",
+    link: "https://fake-rubik-store-front-end.vercel.app/",
+    github: "https://github.com/KritiusOne/FakeRubikStore-Front-end",
+    image: "../../public/projects/fake-rubik-store-home-2.webp",
+    tags: [TAGS.Typescript, TAGS.CSS, TAGS.React, TAGS.TAILWIND],
   },
   {
-    title: "AdventJS - Retos de programación con JavaScript y TypeScript",
+    title: "Fake Rubik Store RestFul API",
     description:
-      "Plataforma gratuita con retos de programación. Más de 1 millón de visitas en un mes. +50K retos completados. Creada desde cero con Next.js, React y Tailwind CSS.",
-    link: "https://adventjs.dev",
-    image: "/projects/adventjs.webp",
-    tags: [TAGS.NEXT, TAGS.TAILWIND],
+      "API RESTful robusta y escalable para aplicaciones de comercio electrónico. Construida con C#, .NET, Entity Framework y SQL Server, desplegada en Azure, ofrece un rendimiento óptimo y una fácil integración con otras herramientas. Incluye autenticación JWT, gestión de inventario, búsqueda avanzada y mucho más.",
+    link: "https://fake-rubik-store-docs.vercel.app/",
+    github: "https://github.com/KritiusOne/FakeRubikStoreAPI",
+    image: "../../public/projects/API-docs-2.webp",
+    tags: [TAGS.CSharp, TAGS.Dotnet, TAGS.SQLServer],
   },
-]
+  {
+    title: "Climataci-n",
+    description:
+      "Aplicación front-end que implementa la API de OpenWeatherMap para el reporte del estado del clima. Construida con HTML, CSS y JavaScript, desplegada en GitHub Pages, permite consultar el clima de cualquier ciudad que la API soporte.",
+    link: "https://kritiusone.github.io/Climataci-n/",
+    github: "https://github.com/KritiusOne/climataci-n",
+    image: "../../public/projects/Climataci-n2.webp",
+    tags: [TAGS.HTML, TAGS.CSS, TAGS.JS],
+  },
+];
 ---
 
 <div class="flex flex-col gap-y-16">
   {
     PROJECTS.map(({ image, title, description, tags, link, github }) => (
-    <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
-  <div class="w-full md:w-1/2">
-    <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
-      <img alt="Recién llegado vs 5 años en Nueva Zelanda" class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="lazy" src={image} />
-    </div>
-  </div>
+      <article class="flex  flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
+        <div class="w-full md:w-1/2">
+          <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
+            <img
+              alt="Recién llegado vs 5 años en Nueva Zelanda"
+              class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105"
+              loading="lazy"
+              src={image}
+            />
+          </div>
+        </div>
 
-  <div class="w-full md:w-1/2 md:max-w-lg">
-    <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
-      {title}
-    </h3>
-    <div class="flex flex-wrap mt-2">
-      <ul class="flex flex-row mb-2 gap-x-2">
-          {tags.map((tag) => (
-            <li>
-              <span
-                class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
-              >
-                <tag.icon class="size-4" />
-                {tag.name}
-              </span>
-            </li>
-          ))}
-        </ul>
+        <div class="w-full md:w-1/2 md:max-w-lg">
+          <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
+            {title}
+          </h3>
+          <div class="flex flex-wrap mt-2">
+            <ul class="flex flex-wrap flex-row mb-2 gap-2">
+              {tags.map((tag) => (
+                <li class="flex items-center justify-center">
+                  <span
+                    class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
+                  >
+                    <tag.icon class="size-4" />
+                    {tag.name}
+                  </span>
+                </li>
+              ))}
+            </ul>
 
-      <div class="mt-2 text-gray-700 dark:text-gray-400">{description}</div>
-      <footer class="flex items-end justify-start mt-4 gap-x-4">
-          {github && (
-            <LinkButton href={github}>
-              <GitHub class="size-6" />
-              Code
-              
-            </LinkButton>
-          )}
-          {link && (
-            <LinkButton href={link}>
-              <Link class="size-4" />
-              Preview
-            </LinkButton>
-          )}
-        </footer>
-    </div>
-  </div>
-</article>
+            <div class="mt-2 text-gray-700 dark:text-gray-400">
+              {description}
+            </div>
+            <footer class="flex items-end justify-start mt-4 gap-x-4">
+              {github && (
+                <LinkButton href={github}>
+                  <GitHub class="size-6" />
+                  Code
+                </LinkButton>
+              )}
+              {link && (
+                <LinkButton href={link}>
+                  <Link class="size-4" />
+                  Preview
+                </LinkButton>
+              )}
+            </footer>
+          </div>
+        </div>
+      </article>
     ))
   }
 </div>
-
-
-
