@@ -8,12 +8,19 @@ const EXPERIENCE = [
     description:
       "Desarrollador web full-stack con experiencia en el ciclo de vida completo de proyectos. Dominio en el desarrollo de aplicaciones web utilizando IBM Domino Designer, DB2, JavaScript, HTML, CSS y jQuery. Realicé tareas de mantenimiento, implementación de nuevas funcionalidades y resolución de problemas para garantizar el óptimo funcionamiento de los sistemas.",
   },
+  {
+    date: "Febrero 2025 - Noviembre 2025",
+    title: "Software Engineer",
+    company: "Cuculi Inc.",
+    description:
+      "Como Ingeniero de Software Full Stack, diseñé, desarrollé y mantuve aplicaciones usando Node.js, MongoDB, Angular y React Native. Trabajé en entornos Scrum, colaborando con otros desarrolladores para entregar proyectos eficientes y escalables. Participé activamente en la implementación de nuevas funcionalidades, la optimización del rendimiento y la documentación técnica de los proyectos.",
+  },
 ];
 ---
 
 <ol class="relative mt-16">
   {
-    EXPERIENCE.map((experience) => (
+    EXPERIENCE.reverse().map((experience) => (
       <li class="">
         <ExperienceItem {...experience} />
       </li>
