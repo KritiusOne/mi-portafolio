@@ -15,6 +15,9 @@ import GitIcon from "@/components/icons/GitIcon.astro";
 import ViteIcon from "@/components/icons/ViteIcon.astro";
 import JqueryIcon from "@/components/icons/JqueryIcon.astro";
 import MySQLIcon from "@/components/icons/MySQLIcon.astro";
+import Nodejs from "@/components/icons/Nodejs.astro";
+import Express from "@/components/icons/Express.astro";
+import Angular from "@/components/icons/Angular.astro";
 
 export const techStack = {
   bbdd: [
@@ -68,6 +71,10 @@ export const techStack = {
       name: "Astro",
       icon: AstroIcon,
     },
+    {
+      name: "Angular",
+      icon: Angular
+    }
   ],
   back: [
     {
@@ -82,6 +89,14 @@ export const techStack = {
       name: "ASP.NET",
       icon: ASPDotNetIcon,
     },
+    {
+      name: "Node.js",
+      icon: Nodejs
+    },
+    {
+      name: "Express.js",
+      icon: Express
+    }
   ],
   tools: [
     {
