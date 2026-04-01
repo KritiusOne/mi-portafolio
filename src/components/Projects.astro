@@ -12,6 +12,9 @@ import AstroIcon from "./icons/AstroIcon.astro";
 import CSharpIcon from "./icons/Csharp.astro";
 import DotnetIcon from "./icons/DotnetIcon.astro";
 import SQLServerIcon from "./icons/SQLServerIcon.astro";
+import { getLangFromUrl } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
 
 const TAGS = {
   HTML: {
@@ -65,45 +68,88 @@ const TAGS = {
     icon: SQLServerIcon,
   },
 };
-const PROJECTS = [
-  {
-    title: "Fake Rubik Store",
-    description:
-      "Plataforma de e-commerce única, dedicada a los amantes de los cubos de Rubik. Desarrollada con tecnologías como React, CSS, Tailwind, TypeScript, Vercel. Ofrece una amplia variedad de productos y una experiencia de compra personalizada a través de la implementación de una API RESTful altamente eficiente.",
-    link: "https://fake-rubik-store-front-end.vercel.app/",
-    github: "https://github.com/KritiusOne/FakeRubikStore-Front-end",
-    image: "/projects/fake-rubik-store-home-2.webp",
-    tags: [TAGS.Typescript, TAGS.CSS, TAGS.React, TAGS.TAILWIND],
+const projectsByLang = {
+  es: {
+    codeLabel: "Codigo",
+    previewLabel: "Vista previa",
+    imageAlt: "Imagen del proyecto",
+    items: [
+      {
+        title: "Fake Rubik Store",
+        description:
+          "Plataforma de e-commerce unica, dedicada a los amantes de los cubos de Rubik. Desarrollada con tecnologias como React, CSS, Tailwind, TypeScript y Vercel. Ofrece una amplia variedad de productos y una experiencia de compra personalizada a traves de la implementacion de una API RESTful altamente eficiente.",
+        link: "https://fake-rubik-store-front-end.vercel.app/",
+        github: "https://github.com/KritiusOne/FakeRubikStore-Front-end",
+        image: "/projects/fake-rubik-store-home-2.webp",
+        tags: [TAGS.Typescript, TAGS.CSS, TAGS.React, TAGS.TAILWIND]
+      },
+      {
+        title: "Fake Rubik Store RESTful API",
+        description:
+          "API RESTful robusta y escalable para aplicaciones de comercio electronico. Construida con C#, .NET, Entity Framework y SQL Server, y desplegada en Azure, ofrece un rendimiento optimo y una integracion sencilla con otras herramientas. Incluye autenticacion JWT, gestion de inventario, busqueda avanzada y mucho mas.",
+        link: "https://fake-rubik-store-docs.vercel.app/",
+        github: "https://github.com/KritiusOne/FakeRubikStoreAPI",
+        image: "/projects/API-docs-2.webp",
+        tags: [TAGS.CSharp, TAGS.Dotnet, TAGS.SQLServer]
+      },
+      {
+        title: "Climatacion",
+        description:
+          "Aplicacion front-end que implementa la API de OpenWeatherMap para reportar el estado del clima. Construida con HTML, CSS y JavaScript, y desplegada en GitHub Pages, permite consultar el clima de cualquier ciudad soportada por la API.",
+        link: "https://kritiusone.github.io/Climataci-n/",
+        github: "https://github.com/KritiusOne/climataci-n",
+        image: "/projects/Climataci-n2.webp",
+        tags: [TAGS.HTML, TAGS.CSS, TAGS.JS]
+      }
+    ]
   },
-  {
-    title: "Fake Rubik Store RestFul API",
-    description:
-      "API RESTful robusta y escalable para aplicaciones de comercio electrónico. Construida con C#, .NET, Entity Framework y SQL Server, desplegada en Azure, ofrece un rendimiento óptimo y una fácil integración con otras herramientas. Incluye autenticación JWT, gestión de inventario, búsqueda avanzada y mucho más.",
-    link: "https://fake-rubik-store-docs.vercel.app/",
-    github: "https://github.com/KritiusOne/FakeRubikStoreAPI",
-    image: "/projects/API-docs-2.webp",
-    tags: [TAGS.CSharp, TAGS.Dotnet, TAGS.SQLServer],
-  },
-  {
-    title: "Climataci-n",
-    description:
-      "Aplicación front-end que implementa la API de OpenWeatherMap para el reporte del estado del clima. Construida con HTML, CSS y JavaScript, desplegada en GitHub Pages, permite consultar el clima de cualquier ciudad que la API soporte.",
-    link: "https://kritiusone.github.io/Climataci-n/",
-    github: "https://github.com/KritiusOne/climataci-n",
-    image: "/projects/Climataci-n2.webp",
-    tags: [TAGS.HTML, TAGS.CSS, TAGS.JS],
-  },
-];
+  en: {
+    codeLabel: "Code",
+    previewLabel: "Preview",
+    imageAlt: "Project image",
+    items: [
+      {
+        title: "Fake Rubik Store",
+        description:
+          "A unique e-commerce platform for Rubik's cube enthusiasts. Built with technologies such as React, CSS, Tailwind, TypeScript and Vercel. It offers a wide product catalog and a personalized shopping experience powered by a highly efficient RESTful API.",
+        link: "https://fake-rubik-store-front-end.vercel.app/",
+        github: "https://github.com/KritiusOne/FakeRubikStore-Front-end",
+        image: "/projects/fake-rubik-store-home-2.webp",
+        tags: [TAGS.Typescript, TAGS.CSS, TAGS.React, TAGS.TAILWIND]
+      },
+      {
+        title: "Fake Rubik Store RESTful API",
+        description:
+          "A robust and scalable RESTful API for e-commerce applications. Built with C#, .NET, Entity Framework and SQL Server, and deployed on Azure, it delivers strong performance and easy integration with other tools. It includes JWT authentication, inventory management, advanced search and more.",
+        link: "https://fake-rubik-store-docs.vercel.app/",
+        github: "https://github.com/KritiusOne/FakeRubikStoreAPI",
+        image: "/projects/API-docs-2.webp",
+        tags: [TAGS.CSharp, TAGS.Dotnet, TAGS.SQLServer]
+      },
+      {
+        title: "Weather App",
+        description:
+          "Front-end application that uses the OpenWeatherMap API to report weather conditions. Built with HTML, CSS and JavaScript, and deployed on GitHub Pages, it allows users to check the weather for any city supported by the API.",
+        link: "https://kritiusone.github.io/Climataci-n/",
+        github: "https://github.com/KritiusOne/climataci-n",
+        image: "/projects/Climataci-n2.webp",
+        tags: [TAGS.HTML, TAGS.CSS, TAGS.JS]
+      }
+    ]
+  }
+} as const;
+
+const projectsContent = projectsByLang[lang] ?? projectsByLang.es;
 ---
 
 <div class="flex flex-col gap-y-16">
   {
-    PROJECTS.map(({ image, title, description, tags, link, github }) => (
+    projectsContent.items.map(({ image, title, description, tags, link, github }) => (
       <article class="flex  flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
         <div class="w-full md:w-1/2">
           <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
             <img
-              alt="Imagen del proyecto"
+              alt={projectsContent.imageAlt}
               class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105"
               loading="lazy"
               src={image}
@@ -136,13 +182,13 @@ const PROJECTS = [
               {github && (
                 <LinkButton href={github}>
                   <GitHub class="size-6" />
-                  Code
+                  {projectsContent.codeLabel}
                 </LinkButton>
               )}
               {link && (
                 <LinkButton href={link}>
                   <Link class="size-4" />
-                  Preview
+                  {projectsContent.previewLabel}
                 </LinkButton>
               )}
             </footer>

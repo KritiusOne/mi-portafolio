@@ -15,7 +15,12 @@ export const ui = {
     "nav.experience": "Experiencia",
     "nav.projects": "Proyectos",
     "nav.about": "Sobre mi",
+    "nav.skills": "Skills",
     "nav.contact": "Contacto",
+    "section.experience": "Experiencia laboral",
+    "section.projects": "Proyectos",
+    "section.about": "Sobre mi",
+    "section.skills": "Skills",
     "lang.es": "Español",
     "lang.en": "Ingles"
   },
@@ -26,7 +31,12 @@ export const ui = {
     "nav.experience": "Experience",
     "nav.projects": "Projects",
     "nav.about": "About me",
+    "nav.skills": "Skills",
     "nav.contact": "Contact",
+    "section.experience": "Work experience",
+    "section.projects": "Projects",
+    "section.about": "About me",
+    "section.skills": "Skills",
     "lang.es": "Spanish",
     "lang.en": "English"
   }

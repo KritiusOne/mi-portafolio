@@ -1,26 +1,50 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro";
-const EXPERIENCE = [
-  {
-    date: "Septiembre 2022 - Enero 2023",
-    title: "Analista de sistemas",
-    company: "Siscómputo LTDA",
-    description:
-      "Desarrollador web full-stack con experiencia en el ciclo de vida completo de proyectos. Dominio en el desarrollo de aplicaciones web utilizando IBM Domino Designer, DB2, JavaScript, HTML, CSS y jQuery. Realicé tareas de mantenimiento, implementación de nuevas funcionalidades y resolución de problemas para garantizar el óptimo funcionamiento de los sistemas.",
-  },
-  {
-    date: "Febrero 2025 - Noviembre 2025",
-    title: "Software Engineer",
-    company: "Cuculi Inc.",
-    description:
-      "Como Ingeniero de Software Full Stack, diseñé, desarrollé y mantuve aplicaciones usando Node.js, MongoDB, Angular y React Native. Trabajé en entornos Scrum, colaborando con otros desarrolladores para entregar proyectos eficientes y escalables. Participé activamente en la implementación de nuevas funcionalidades, la optimización del rendimiento y la documentación técnica de los proyectos.",
-  },
-];
+import { getLangFromUrl } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const experiencesByLang = {
+  es: [
+    {
+      date: "Septiembre 2022 - Enero 2023",
+      title: "Analista de sistemas",
+      company: "Siscómputo LTDA",
+      description:
+        "Desarrollador web full-stack con experiencia en el ciclo de vida completo de proyectos. Dominio en el desarrollo de aplicaciones web utilizando IBM Domino Designer, DB2, JavaScript, HTML, CSS y jQuery. Realicé tareas de mantenimiento, implementación de nuevas funcionalidades y resolución de problemas para garantizar el óptimo funcionamiento de los sistemas."
+    },
+    {
+      date: "Febrero 2025 - Noviembre 2025",
+      title: "Software Engineer",
+      company: "Cuculi Inc.",
+      description:
+        "Como Ingeniero de Software Full Stack, diseñé, desarrollé y mantuve aplicaciones usando Node.js, MongoDB, Angular y React Native. Trabajé en entornos Scrum, colaborando con otros desarrolladores para entregar proyectos eficientes y escalables. Participé activamente en la implementación de nuevas funcionalidades, la optimización del rendimiento y la documentación técnica de los proyectos."
+    }
+  ],
+  en: [
+    {
+      date: "September 2022 - January 2023",
+      title: "Systems Analyst",
+      company: "Siscómputo LTDA",
+      description:
+        "Full-stack web developer with experience across the complete project lifecycle. Skilled in building web applications with IBM Domino Designer, DB2, JavaScript, HTML, CSS and jQuery. I handled maintenance tasks, new feature implementation and issue resolution to ensure optimal system performance."
+    },
+    {
+      date: "February 2025 - November 2025",
+      title: "Software Engineer",
+      company: "Cuculi Inc.",
+      description:
+        "As a Full Stack Software Engineer, I designed, developed and maintained applications using Node.js, MongoDB, Angular and React Native. I worked in Scrum environments, collaborating with other developers to deliver efficient and scalable projects. I actively contributed to feature implementation, performance optimization and technical documentation."
+    }
+  ]
+} as const;
+
+const experiences = experiencesByLang[lang] ?? experiencesByLang.es;
 ---
 
 <ol class="relative mt-16">
   {
-    EXPERIENCE.reverse().map((experience) => (
+    [...experiences].reverse().map((experience) => (
       <li class="">
         <ExperienceItem {...experience} />
       </li>

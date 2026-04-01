@@ -1,30 +1,39 @@
 ---
 import ThemeToggle from "./ThemeToggle.astro";
 import LanguagePicker from "./LanguagePicker.astro";
+import {
+  getLangFromUrl,
+  getLocalizedPath,
+  useTranslations
+} from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const localizedHomePath = getLocalizedPath("/", lang);
 
 const navItems = [
   {
-    title: "Experiencia",
+    title: t("nav.experience"),
     label: "experiencia",
-    url: "/#experiencia",
+    url: `${localizedHomePath}#experiencia`,
   },
   {
-    title: "Proyectos",
+    title: t("nav.projects"),
     label: "proyectos",
-    url: "/#proyectos",
+    url: `${localizedHomePath}#proyectos`,
   },
   {
-    title: "Sobre mí",
+    title: t("nav.about"),
     label: "sobre-mi",
-    url: "/#sobre-mi",
+    url: `${localizedHomePath}#sobre-mi`,
   },
   {
-    title: "Skills",
+    title: t("nav.skills"),
     label: "Skills",
-    url: "/#Skills",
+    url: `${localizedHomePath}#Skills`,
   },
   {
-    title: "Contacto",
+    title: t("nav.contact"),
     label: "contacto",
     url: "https://www.linkedin.com/in/juliorodriguezureche--/",
   },

@@ -11,6 +11,10 @@ import SectionContainer from "@/components/SectionContainer.astro";
 import Hero from "@/components/Hero.astro";
 import TitleSection from "@/components/TitleSection.astro";
 import Stack from "@/components/Stack.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <Layout
@@ -32,7 +36,7 @@ import Stack from "@/components/Stack.astro";
     <SectionContainer id="experiencia">
       <TitleSection>
         <Briefcase class="size-8" />
-        Experiencia laboral
+        {t("section.experience")}
       </TitleSection>
       <Experience />
     </SectionContainer>
@@ -40,7 +44,7 @@ import Stack from "@/components/Stack.astro";
     <SectionContainer id="proyectos">
       <TitleSection>
         <CodeIcon class="size-7" />
-        Proyectos
+        {t("section.projects")}
       </TitleSection>
       <Projects />
     </SectionContainer>
@@ -48,7 +52,7 @@ import Stack from "@/components/Stack.astro";
     <SectionContainer id="sobre-mi">
       <TitleSection>
         <ProfileCheck class="size-8" />
-        Sobre mí
+        {t("section.about")}
       </TitleSection>
       <AboutMe />
     </SectionContainer>
@@ -56,7 +60,7 @@ import Stack from "@/components/Stack.astro";
     <SectionContainer id="Skills">
       <TitleSection>
         <CodeIcon class="size-8" />
-        Skills
+        {t("section.skills")}
       </TitleSection>
       <Stack />
     </SectionContainer>
