@@ -1,0 +1,68 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+import AboutMe from "@/components/AboutMe.astro";
+import Briefcase from "@/components/icons/Briefcase.astro";
+import CodeIcon from "@/components/icons/Code.astro";
+import Experience from "@/components/Experience.astro";
+import ProfileCheck from "@/components/icons/ProfileCheck.astro";
+import Projects from "@/components/Projects.astro";
+import SectionContainer from "@/components/SectionContainer.astro";
+import Hero from "@/components/Hero.astro";
+import TitleSection from "@/components/TitleSection.astro";
+import Stack from "@/components/Stack.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout
+  title={{
+    es: "Portafolio de Julio Rodríguez - Desarrollador Front-end y Back-end",
+    en: "Julio Rodríguez Portfolio - Front-end and Back-end Developer"
+  }}
+  description={{
+    es: "Contrata a Julio Rodríguez para el desarrollo y/o mantenimiento de tu aplicación frontend o backend.",
+    en: "Hire Julio Rodríguez for the development and maintenance of your front-end or back-end application."
+  }}
+>
+  <main class="px-4">
+    <SectionContainer class="py-16 md:py-36">
+      <Hero />
+    </SectionContainer>
+  </main>
+  <div class="space-y-24">
+    <SectionContainer id="experiencia">
+      <TitleSection>
+        <Briefcase class="size-8" />
+        {t("section.experience")}
+      </TitleSection>
+      <Experience />
+    </SectionContainer>
+
+    <SectionContainer id="proyectos">
+      <TitleSection>
+        <CodeIcon class="size-7" />
+        {t("section.projects")}
+      </TitleSection>
+      <Projects />
+    </SectionContainer>
+
+    <SectionContainer id="sobre-mi">
+      <TitleSection>
+        <ProfileCheck class="size-8" />
+        {t("section.about")}
+      </TitleSection>
+      <AboutMe />
+    </SectionContainer>
+
+    <SectionContainer id="Skills">
+      <TitleSection>
+        <CodeIcon class="size-8" />
+        {t("section.skills")}
+      </TitleSection>
+      <Stack />
+    </SectionContainer>
+  </div>
+</Layout>

@@ -5,7 +5,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { ViewTransitions } from "astro:transitions";
 import Analytics from "@vercel/analytics/astro";
-import { getLangFromUrl } from "../i18n/utils";
+import { getLangFromUrl, getLocaleSwitchPath } from "../i18n/utils";
 import { defaultLang, type Language } from "../i18n/ui";
 
 type LocalizedText = string | Partial<Record<Language, string>>;
@@ -17,6 +17,10 @@ interface Props {
 
 const { description, title } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
+const siteUrl = Astro.site ?? new URL(Astro.url.origin);
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl);
+const spanishUrl = new URL(getLocaleSwitchPath(Astro.url, "es"), siteUrl);
+const englishUrl = new URL(getLocaleSwitchPath(Astro.url, "en"), siteUrl);
 
 function resolveLocalizedText(value: LocalizedText, locale: Language): string {
   if (typeof value === "string") {
@@ -37,6 +41,10 @@ const resolvedDescription = resolveLocalizedText(description, lang);
     <meta name="description" content={resolvedDescription} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalUrl.toString()} />
+    <link rel="alternate" hreflang="es" href={spanishUrl.toString()} />
+    <link rel="alternate" hreflang="en" href={englishUrl.toString()} />
+    <link rel="alternate" hreflang="x-default" href={spanishUrl.toString()} />
     <meta name="generator" content={Astro.generator} />
     <title>{resolvedTitle}</title>
     <script is:inline>
