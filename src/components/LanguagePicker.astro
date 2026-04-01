@@ -1,0 +1,53 @@
+---
+import { getLangFromUrl, getLocaleSwitchPath } from "../i18n/utils";
+import { type Language } from "../i18n/ui";
+
+const lang = getLangFromUrl(Astro.url);
+
+const localeLinks: Array<{ code: Language; href: string; label: string }> = [
+  {
+    code: "es",
+    href: getLocaleSwitchPath(Astro.url, "es"),
+    label: "ES"
+  },
+  {
+    code: "en",
+    href: getLocaleSwitchPath(Astro.url, "en"),
+    label: "EN"
+  }
+];
+---
+
+<div class="ml-2 flex items-center gap-1" aria-label="Language selector">
+  {
+    localeLinks.map((item) => (
+      <a
+        href={item.href}
+        data-language-link
+        data-lang={item.code}
+        aria-current={lang === item.code ? "page" : undefined}
+        class:list={[
+          "rounded-full px-2 py-1 text-xs font-semibold transition",
+          lang === item.code
+            ? "bg-blue-500 text-white"
+            : "text-gray-600 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-500"
+        ]}
+      >
+        {item.label}
+      </a>
+    ))
+  }
+</div>
+
+<script is:inline>
+  const storageKey = "preferred-language";
+
+  document.querySelectorAll("[data-language-link]").forEach((link) => {
+    link.addEventListener("click", () => {
+      const lang = link.getAttribute("data-lang");
+      if (lang === "es" || lang === "en") {
+        localStorage.setItem(storageKey, lang);
+      }
+    });
+  });
+</script>

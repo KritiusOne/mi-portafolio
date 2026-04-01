@@ -39,6 +39,38 @@ const resolvedDescription = resolveLocalizedText(description, lang);
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{resolvedTitle}</title>
+    <script is:inline>
+      (() => {
+        const storageKey = "preferred-language";
+        const currentPath = window.location.pathname;
+        const isRootPath = currentPath === "/" || currentPath === "/index.html";
+
+        if (!isRootPath) {
+          return;
+        }
+
+        try {
+          const storedLanguage = localStorage.getItem(storageKey);
+
+          if (storedLanguage === "en") {
+            window.location.replace("/en/");
+            return;
+          }
+
+          if (storedLanguage === "es") {
+            return;
+          }
+        } catch {
+          // Ignore localStorage errors in restricted environments.
+        }
+
+        const browserLanguage = (navigator.language || "").toLowerCase();
+
+        if (browserLanguage.startsWith("en")) {
+          window.location.replace("/en/");
+        }
+      })();
+    </script>
     <ViewTransitions />
   </head>
 

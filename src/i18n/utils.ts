@@ -40,3 +40,24 @@ export function getLocalizedPath(pathname: string, lang: Language): string {
 
   return `/${lang}${cleanPath}`;
 }
+
+function stripLocaleFromPathname(pathname: string): string {
+  const segments = pathname.split("/");
+  const maybeLang = segments[1];
+
+  if (isLanguage(maybeLang)) {
+    const normalized = `/${segments.slice(2).join("/")}`;
+    return normalized === "/" ? "/" : normalized.replace(/\/+$/, "") || "/";
+  }
+
+  return pathname || "/";
+}
+
+export function getLocaleSwitchPath(url: URL, targetLang: Language): string {
+  const basePath = stripLocaleFromPathname(url.pathname);
+  const pathWithLocale = getLocalizedPath(basePath, targetLang);
+  const hasHash = url.hash.length > 0;
+  const hasSearch = url.search.length > 0;
+
+  return `${pathWithLocale}${hasSearch ? url.search : ""}${hasHash ? url.hash : ""}`;
+}
