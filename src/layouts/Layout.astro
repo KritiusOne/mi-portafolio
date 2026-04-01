@@ -4,25 +4,41 @@ import "@fontsource-variable/onest";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { ViewTransitions } from "astro:transitions";
-import Analytics from "@vercel/analytics/astro"
+import Analytics from "@vercel/analytics/astro";
+import { getLangFromUrl } from "../i18n/utils";
+import { defaultLang, type Language } from "../i18n/ui";
+
+type LocalizedText = string | Partial<Record<Language, string>>;
 
 interface Props {
-  title: string;
-  description: string;
+  title: LocalizedText;
+  description: LocalizedText;
 }
 
 const { description, title } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+
+function resolveLocalizedText(value: LocalizedText, locale: Language): string {
+  if (typeof value === "string") {
+    return value;
+  }
+
+  return value[locale] ?? value[defaultLang] ?? "";
+}
+
+const resolvedTitle = resolveLocalizedText(title, lang);
+const resolvedDescription = resolveLocalizedText(description, lang);
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={description} />
+    <meta name="description" content={resolvedDescription} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <title>{resolvedTitle}</title>
     <ViewTransitions />
   </head>
 
