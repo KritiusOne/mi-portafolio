@@ -16,21 +16,25 @@ const navItems = [
     title: t("nav.experience"),
     label: "experiencia",
     url: `${localizedHomePath}#experiencia`,
+    sectionId: "experiencia"
   },
   {
     title: t("nav.projects"),
     label: "proyectos",
     url: `${localizedHomePath}#proyectos`,
+    sectionId: "proyectos"
   },
   {
     title: t("nav.about"),
     label: "sobre-mi",
     url: `${localizedHomePath}#sobre-mi`,
+    sectionId: "sobre-mi"
   },
   {
     title: t("nav.skills"),
     label: "Skills",
     url: `${localizedHomePath}#Skills`,
+    sectionId: "Skills"
   },
   {
     title: t("nav.contact"),
@@ -40,32 +44,53 @@ const navItems = [
 ];
 ---
 
-<header
-  class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2"
->
-  <nav
-    class="flex px-3 text-sm font-medium rounded-full text-gray-600 dark:text-gray-200 justify-center items-center"
-  >
+<header>
+  <div class="fixed top-0 z-20 mt-2 flex w-full items-center justify-center px-3 md:hidden">
+    <nav class="flex w-full max-w-sm items-center justify-between rounded-full px-3 py-1 text-sm font-medium text-gray-600 dark:text-gray-200">
+      <LanguagePicker />
+      <ThemeToggle />
+    </nav>
+  </div>
+
+  <div class="fixed top-0 z-20 mt-2 hidden w-full items-center justify-center md:flex">
+    <nav class="flex items-center justify-center rounded-full px-3 text-sm font-medium text-gray-600 dark:text-gray-200">
+      {
+        navItems.map((link) => (
+          <a
+            class="relative block px-2 py-2 transition hover:text-blue-500 dark:hover:text-blue-500"
+            aria-label={link.label}
+            href={link.url}
+            data-section-link={link.sectionId ? "true" : undefined}
+          >
+            {link.title}
+          </a>
+        ))
+      }
+      <ThemeToggle />
+      <LanguagePicker />
+    </nav>
+  </div>
+
+  <nav class="mobile-bottom-nav fixed bottom-4 left-1/2 z-20 flex w-[calc(100%-1.25rem)] max-w-md -translate-x-1/2 items-center justify-between rounded-2xl px-2 py-2 text-[11px] font-semibold text-gray-600 dark:text-gray-200 md:hidden">
     {
       navItems.map((link) => (
         <a
-          class="relative block px-2 py-2 transition hover:text-blue-500 dark:hover:text-blue-500"
+          class="flex min-w-0 flex-1 items-center justify-center rounded-xl px-2 py-2 text-center transition hover:text-blue-500 dark:hover:text-blue-500"
           aria-label={link.label}
           href={link.url}
+          data-section-link={link.sectionId ? "true" : undefined}
         >
-          {link.title}
+          <span class="truncate">{link.title}</span>
         </a>
       ))
     }
-    <ThemeToggle />
-    <LanguagePicker />
   </nav>
 </header>
 
 <script>
   document.addEventListener("astro:page-load", () => {
     const sections = document.querySelectorAll("section");
-    const navItems = document.querySelectorAll("header nav a");
+    const navItems = document.querySelectorAll("header nav a[data-section-link]");
 
     const callback = (entries: any[]) => {
       entries.forEach((entry) => {
@@ -113,6 +138,16 @@ const navItems = [
 
   nav {
     @apply dark:bg-gray-800/90 bg-white/50;
+  }
+
+  .mobile-bottom-nav {
+    @apply shadow-lg ring-1 backdrop-blur ring-white/10 dark:bg-gray-800/90 bg-white/90;
+  }
+
+  @media (max-width: 767px) {
+    :global(main) {
+      padding-bottom: 6.25rem;
+    }
   }
 
   @keyframes nav-shadown {
