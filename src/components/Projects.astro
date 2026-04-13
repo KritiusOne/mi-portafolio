@@ -13,7 +13,35 @@ import CSharpIcon from "./icons/Csharp.astro";
 import DotnetIcon from "./icons/DotnetIcon.astro";
 import SQLServerIcon from "./icons/SQLServerIcon.astro";
 import { getLangFromUrl } from "@/i18n/utils";
-
+import ExpressIcon from "./icons/Express.astro";
+import NodeIcon from "./icons/Nodejs.astro";
+import MongoIcon from "./icons/MongoDBIcon.astro";
+interface Project {
+  title: string;
+  description: string;
+  image: string;
+  link?: string;
+  github?: string;
+  tags: {
+    name: string;
+    class: string;
+    icon: any;
+  }[];
+}
+interface projByLangs {
+  es: {
+    codeLabel: string;
+    previewLabel: string;
+    imageAlt: string;
+    items: Project[];
+  };
+  en: {
+    codeLabel: string;
+    previewLabel: string;
+    imageAlt: string;
+    items: Project[];
+  };
+}
 const lang = getLangFromUrl(Astro.url);
 
 const TAGS = {
@@ -67,13 +95,36 @@ const TAGS = {
     class: "bg-red-400 text-white",
     icon: SQLServerIcon,
   },
+  Express: {
+    name: "Express.js",
+    class: "bg-gray-800 text-white",
+    icon: ExpressIcon,
+  },
+  Nodejs: {
+    name: "Node.js",
+    class: "bg-green-600 text-white",
+    icon: NodeIcon,
+  },
+  MongoDB: {
+    name: "MongoDB",
+    class: "bg-white text-black",
+    icon: MongoIcon,
+  }
 };
-const projectsByLang = {
+const projectsByLang: projByLangs = {
   es: {
     codeLabel: "Codigo",
     previewLabel: "Vista previa",
     imageAlt: "Imagen del proyecto",
     items: [
+      {
+        title: "Smaller",
+        description: "Aplicación Full stack para recortar links, construida con Next.js, Tailwind CSS, TypeScript, Node.js, Express.js y MongoDB, y desplegada en Vercel y Railway. Permite a los usuarios generar URLs cortas personalizadas, gestionar sus enlaces y acceder a estadísticas detalladassobre el rendimiento de cada enlace.",
+        link: "https://smaller-frontend.vercel.app/",
+        github: "https://github.com/KritiusOne/smaller-frontend",
+        image: "/projects/smaller-home.webp",
+        tags: [TAGS.Typescript, TAGS.TAILWIND, TAGS.React, TAGS.Nodejs, TAGS.Express, TAGS.MongoDB]
+      },
       {
         title: "Fake Rubik Store",
         description:
@@ -108,6 +159,14 @@ const projectsByLang = {
     previewLabel: "Preview",
     imageAlt: "Project image",
     items: [
+      {
+        title: "Smaller",
+        description: "Full stack application to cut links, built with Next.js, Tailwind CSS, TypeScript, Node.js, Express.js and MongoDB, and deployed on Vercel and Railway. Allows users to generate custom short URLs, manage their links and access detailed statistics about each link's performance.",
+        link: "https://smaller-frontend.vercel.app/",
+        github: "https://github.com/KritiusOne/smaller-frontend",
+        image: "/projects/smaller-home.webp",
+        tags: [TAGS.Typescript, TAGS.TAILWIND, TAGS.React, TAGS.Nodejs, TAGS.Express, TAGS.MongoDB]
+      },
       {
         title: "Fake Rubik Store",
         description:
@@ -145,7 +204,7 @@ const projectsContent = projectsByLang[lang] ?? projectsByLang.es;
 <div class="flex flex-col gap-y-16">
   {
     projectsContent.items.map(({ image, title, description, tags, link, github }) => (
-      <article class="flex  flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
+      <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
         <div class="w-full md:w-1/2">
           <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
             <img
