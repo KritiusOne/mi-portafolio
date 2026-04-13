@@ -42,11 +42,21 @@ const localeLinks: Array<{ code: Language; href: string; label: string }> = [
 <script is:inline>
   const storageKey = "preferred-language";
 
-  const languageSelect = document.querySelector("[data-language-select]");
+  if (!window.__languagePickerBound) {
+    window.__languagePickerBound = true;
 
-  if (languageSelect instanceof HTMLSelectElement) {
-    languageSelect.addEventListener("change", (event) => {
-      const selectedOption = event.currentTarget.selectedOptions[0];
+    document.addEventListener("change", (event) => {
+      const target = event.target;
+
+      if (!(target instanceof HTMLSelectElement)) {
+        return;
+      }
+
+      if (!target.matches("[data-language-select]")) {
+        return;
+      }
+
+      const selectedOption = target.selectedOptions[0];
       const selectedLang = selectedOption?.getAttribute("data-lang");
       const nextHref = selectedOption?.value;
 
